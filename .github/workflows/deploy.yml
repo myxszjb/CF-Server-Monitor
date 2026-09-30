@@ -50,7 +50,7 @@ jobs:
       - name: 📝 Create wrangler.toml
         run: |
           cat > wrangler.toml << 'WEOF'
-          name = "cf-server-monitor"
+          name = "cf-server"
           main = "src/index.js"
           compatibility_date = "2024-12-01"
           compatibility_flags = ["nodejs_compat"]
@@ -103,7 +103,7 @@ jobs:
         if: env.API_SECRET != ''
         env:
           API_SECRET: ${{ secrets.API_SECRET }}
-        run: printf '%s' "$API_SECRET" | npx wrangler secret put API_SECRET --name cf-server-monitor
+        run: printf '%s' "$API_SECRET" | npx wrangler secret put API_SECRET --name cf-server
 
       - name: ✅ Deployment Success
         if: success()

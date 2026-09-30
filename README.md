@@ -510,7 +510,7 @@ Go 版本和旧 Shell / PowerShell 版本卸载脚本只清理各自安装的服
 
 1. 在 Fork 仓库的 Actions secrets 中配置 `SYNC_TOKEN`、`CF_API_TOKEN`、`CF_ACCOUNT_ID`、`D1_DATABASE_ID`；需要同步 API 密钥时再配置 `API_SECRET`。`SYNC_TOKEN` 使用仅允许该仓库 `Contents: Read and write` 的 GitHub Fine-grained PAT。
 2. 手动运行 `Upstream Sync`，或等待每日定时任务把 `huilang-me/CF-Server-Monitor` 的 `main` 同步到 Fork 的 `main`。
-3. `Upstream Sync` 使用 `SYNC_TOKEN` 推送；这个 push 会自动触发 `Deploy to Cloudflare Workers`，部署目标为 `cf-server-monitor`，并通过 `keep_vars` 保留线上已有变量和 D1 绑定。
+3. `Upstream Sync` 使用 `SYNC_TOKEN` 推送；这个 push 会自动触发 `Deploy to Cloudflare Workers`，部署目标为 `cf-server`，并通过 `keep_vars` 保留线上已有变量和 D1 绑定。
 4. 部署完成后进入后台的数据库管理，按提示执行数据库升级；该操作只补齐字段和索引，不会删除服务器列表、站点设置或历史数据。
 
 自动更新链路为：`upstream/main` → `Upstream Sync` → Fork `main` → `Deploy to Cloudflare Workers`。当前跟随稳定 `main`，不会自动部署上游 `dev` / Beta 版本。
